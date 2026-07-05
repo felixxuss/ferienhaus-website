@@ -116,6 +116,80 @@ h1, h2 {
   margin-bottom: 1rem;
 }
 
+/* Ausstattung (aufklappbar) */
+.ausstattung {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(34, 58, 45, 0.15);
+}
+
+.ausstattung summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--forest-dark);
+  list-style: none;
+}
+
+.ausstattung summary::-webkit-details-marker {
+  display: none;
+}
+
+.ausstattung .chevron {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: var(--forest-dark);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s ease;
+}
+
+.ausstattung[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.ausstattung-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem 2rem;
+  margin-top: 1.75rem;
+}
+
+.ausstattung-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.ausstattung-item svg {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.ausstattung-item svg path,
+.ausstattung-item svg circle,
+.ausstattung-item svg rect,
+.ausstattung-item svg line {
+  fill: none;
+  stroke: var(--forest-dark);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ausstattung-item svg .filled {
+  fill: var(--forest-dark);
+  stroke: none;
+}
+
 /* Photo gallery / slideshows */
 .gallery-category {
   margin-top: 2.5rem;
