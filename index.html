@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unser Ferienhaus im Wald – Småland, Schweden</title>
+<meta name="description" content="Gemütliches Ferienhaus mitten im Wald in Småland, Schweden. Fotos, Informationen zur Gegend und Lage.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="hero" id="top">
+  <nav class="navbar">
+    <div class="nav-logo">Ferienhaus Villa Ronja</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menü öffnen">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#ueber">Über das Haus</a></li>
+      <li><a href="#fotos">Fotos</a></li>
+      <li><a href="#gegend">Die Gegend</a></li>
+      <li><a href="#lage">Lage</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+  <div class="hero-content">
+    <h1>Unser Ferienhaus im Wald</h1>
+    <p>Ruhe, Natur und Gemütlichkeit mitten in Småland, Schweden</p>
+  </div>
+</header>
+
+<main>
+
+  <section id="ueber" class="section">
+    <h2>Über das Haus</h2>
+    <p>
+      Umgeben von Wald und Stille liegt unser gemütliches Ferienhaus. 
+      Erlebe skandinavisches Wohlfühlflair auf rund 100 m² Wohnfläche. <br><br>
+      Unser Ferienhaus vereint modernes Design mit absoluter Gemütlichkeit und bietet den perfekten Rückzugsort für deinen Urlaub. 
+      Das Herzstück des Hauses ist der lichtdurchflutete, offene Wohnbereich mit einem Kamin 
+      und einer top ausgestatteten Küche, die ideal für kulinarische Abende im Kreis deiner 
+      Liebsten ist. <br>Drei gemütliche Schlafzimmer bieten 
+      insgesamt sechs Schlafplätze und machen das Haus zu einem großzügigen Urlaubsdomizil 
+      für Familien, Paare oder Freundesgruppen. 
+      <br><br>Nach einem aktiven Tag in der Natur sorgt die hauseigene Sauna für dein 
+      privates Wellness-Erlebnis. Alternativ lässt sich der Tag auch wunderbar auf der 
+      schönen Terrasse inmitten der Ruhe der Natur ausklingen.
+    </p>
+  </section>
+
+  <section id="fotos" class="section photos">
+    <h2>Fotos</h2>
+
+    <div class="gallery-category">
+      <h3>Das Haus</h3>
+      <div class="slideshow" data-category="haus">
+        <div class="slides"></div>
+        <button class="slide-btn prev" aria-label="Vorheriges Foto">&#10094;</button>
+        <button class="slide-btn next" aria-label="Nächstes Foto">&#10095;</button>
+        <div class="slide-dots"></div>
+      </div>
+    </div>
+
+    <div class="gallery-category">
+      <h3>Der Außenbereich</h3>
+      <div class="slideshow" data-category="aussenbereich">
+        <div class="slides"></div>
+        <button class="slide-btn prev" aria-label="Vorheriges Foto">&#10094;</button>
+        <button class="slide-btn next" aria-label="Nächstes Foto">&#10095;</button>
+        <div class="slide-dots"></div>
+      </div>
+    </div>
+
+    <div class="gallery-category">
+      <h3>Die Umgebung</h3>
+      <div class="slideshow" data-category="umgebung">
+        <div class="slides"></div>
+        <button class="slide-btn prev" aria-label="Vorheriges Foto">&#10094;</button>
+        <button class="slide-btn next" aria-label="Nächstes Foto">&#10095;</button>
+        <div class="slide-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gegend" class="section">
+    <h2>Die Gegend</h2>
+    <p>
+      Inmitten der schwedischen Natur, im Herzen der idyllischen Region Småland, 
+      liegt unser modernes Ferienhaus. <br>Nur etwa 550 Meter vom großen See Vimmern 
+      entfernt, hast du die perfekte Kulisse zum Baden, Angeln oder Paddeln direkt 
+      vor der Haustür. <br>Wer lieber an Land bleibt, spaziert durch den angrenzenden 
+      Wald, der sich ideal zum Sammeln von Beeren und Pilzen eignet - ein wunderbarer 
+      Ort, um den Alltag hinter sich zu lassen. <br>Auch für Ausflüge ist die Lage 
+      ideal. In unmittelbarer Nähe befinden sich die originalen Drehorte der 
+      berühmten Astrid-Lindgren-Verfilmungen. Den beeindruckenden Nationalpark 
+      Norra Kvill erreichst du in einer kurzen, 10-minütigen Autofahrt. Die charmante 
+      Stadt Vimmerby liegt nur 20 Minuten entfernt, während du den wunderschönen 
+      Sommen-See in etwa 45 Minuten erreichst. Wer Lust auf Meer und Küstenflair 
+      hat, ist in einer Stunde in der Schärenstadt Västervik.
+    </p>
+  </section>
+
+  <section id="lage" class="section">
+    <h2>Die Lage</h2>
+    <div id="map"></div>
+  </section>
+
+  <section id="kontakt" class="section kontakt">
+    <h2>Kontakt</h2>
+    <p>Interesse geweckt? Melde dich gerne bei uns.</p>
+    <div class="kontakt-buttons">
+      <a href="mailto:deine-email@example.com" class="btn">E-Mail schreiben</a>
+      <a href="https://schwedenhaus-marianne.com/ferienhaeuser.php?sprache=de" class="btn btn-buchen" target="_blank" rel="noopener">Jetzt buchen</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 Ferienhaus Schweden</p>
+</footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/gallery-data.js"></script>
+<script src="js/captions-data.js"></script>
+<script src="js/poi-data.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
