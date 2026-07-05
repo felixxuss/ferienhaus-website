@@ -9,7 +9,7 @@ const captionsData = {
   'images/aussenbereich/03.jpg': 'Gemütliche Holzofensauna',
   'images/aussenbereich/05.jpg': 'Terasse',
   'images/aussenbereich/08.jpg': 'Badesee im Waldgebiet',
-  'images/umgebung/01.jpg': 'Der Kathulthof',
+  'images/umgebung/01.jpg': 'Der Katthulthof',
   'images/umgebung/03.jpg': 'Bullerbü',
   'images/umgebung/04.jpg': 'Astrid Lindgrens Värld',
   'images/umgebung/05.jpg': 'Altstadt von Vimmerby',
