@@ -2,8 +2,8 @@
 // Genauere Position gewünscht? In Google Maps die Stelle suchen, rechte Maustaste
 // auf den Punkt -> die angezeigten Koordinaten kopieren -> hier einsetzen.
 //
-// HINWEIS: Die Koordinaten für "Katthult" und "Rönnäs am Sommen" sind grobe
-// Schätzungen (kleine, wenig bekannte Orte) - bitte einmal in Google Maps
+// HINWEIS: Die Koordinaten für "Katthult", "Bullerbü" und "Rönnäs am Sommen" sind
+// grobe Schätzungen (kleine, wenig bekannte Orte) - bitte einmal in Google Maps
 // gegenchecken und bei Bedarf anpassen.
 const poiData = [
   {
@@ -11,6 +11,18 @@ const poiData = [
     coords: [57.57, 15.87],
     icon: '🎬',
     info: 'Original-Drehort der Astrid-Lindgren-Verfilmungen'
+  },
+  {
+    name: 'Bullerbü (Sevedstorp)',
+    coords: [57.585, 15.86],
+    icon: '🏡',
+    info: 'ca. 20 Autominuten entfernt'
+  },
+  {
+    name: 'Astrid Lindgrens Welt',
+    coords: [57.6706, 15.8583],
+    icon: '🎡',
+    info: 'ca. 20 Autominuten entfernt'
   },
   {
     name: 'Norra Kvill Nationalpark',

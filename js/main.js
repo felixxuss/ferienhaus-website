@@ -44,7 +44,17 @@ poiData.forEach(poi => {
 
 // Kartenausschnitt so wählen, dass Haus und alle Ausflugsziele sichtbar sind
 const alleKoordinaten = [hausKoordinaten, ...poiData.map(poi => poi.coords)];
-map.fitBounds(alleKoordinaten, { padding: [30, 30] });
+
+function passeKartenausschnittAn() {
+  // invalidateSize erzwingt eine Neuberechnung der Kartengröße - ohne das kann
+  // Leaflet sich beim ersten Laden eine falsche (z.B. 0px breite) Größe merken,
+  // wodurch fitBounds komplett falsch zoomt.
+  map.invalidateSize();
+  map.fitBounds(alleKoordinaten, { padding: [30, 30] });
+}
+
+passeKartenausschnittAn();
+window.addEventListener('load', passeKartenausschnittAn);
 
 // Slideshows für die Foto-Kategorien
 function buildSlideshow(container, captions) {

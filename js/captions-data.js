@@ -10,8 +10,10 @@ const captionsData = {
   'images/aussenbereich/05.jpg': 'Terasse',
   'images/aussenbereich/08.jpg': 'Badesee im Waldgebiet',
   'images/umgebung/01.jpg': 'Der Kathulthof',
-  'images/umgebung/03.jpg': 'Altstadt von Vimmerby',
-  'images/umgebung/04.jpg': 'Västervik an der Ostsee',
-  'images/umgebung/06.jpg': 'Norra Kvill Nationalpark',
-  'images/umgebung/08.jpg': 'Rönnäs am Sommensee'
+  'images/umgebung/03.jpg': 'Bullerbü',
+  'images/umgebung/04.jpg': 'Astrid Lindgrens Värld',
+  'images/umgebung/05.jpg': 'Altstadt von Vimmerby',
+  'images/umgebung/06.jpg': 'Västervik an der Ostsee',
+  'images/umgebung/08.jpg': 'Norra Kvill Nationalpark',
+  'images/umgebung/10.jpg': 'Rönnäs am Sommensee'
 };
