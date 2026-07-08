@@ -135,3 +135,53 @@ function buildSlideshow(container, captions) {
 }
 
 document.querySelectorAll('.slideshow').forEach(el => buildSlideshow(el, captionsData));
+
+// Lightbox: Foto in Originalformat groß anzeigen
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = lightbox.querySelector('img');
+const lightboxClose = document.getElementById('lightboxClose');
+
+document.querySelectorAll('.slide img').forEach(img => {
+  img.addEventListener('click', () => {
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add('open');
+  });
+});
+
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  lightboxImg.src = '';
+}
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) closeLightbox();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
+
+// Hinweisfenster beim Klick auf "Jetzt buchen"
+const buchenBtn = document.getElementById('buchenBtn');
+const buchenModal = document.getElementById('buchenModal');
+const modalClose = document.getElementById('modalClose');
+const modalWeiter = document.getElementById('modalWeiter');
+
+buchenBtn.addEventListener('click', e => {
+  e.preventDefault();
+  buchenModal.classList.add('open');
+});
+
+function closeBuchenModal() {
+  buchenModal.classList.remove('open');
+}
+
+modalClose.addEventListener('click', closeBuchenModal);
+buchenModal.addEventListener('click', e => {
+  if (e.target === buchenModal) closeBuchenModal();
+});
+modalWeiter.addEventListener('click', () => {
+  closeBuchenModal();
+  window.open(buchenBtn.href, '_blank', 'noopener');
+});

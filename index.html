@@ -42,7 +42,7 @@
       und einer top ausgestatteten Küche, die ideal für kulinarische Abende im Kreis deiner 
       Liebsten ist. <br>Drei gemütliche Schlafzimmer bieten 
       insgesamt sechs Schlafplätze und machen das Haus zu einem großzügigen Urlaubsdomizil 
-      für Familien, Paare oder Freundesgruppen. 
+      für Familien oder Paare. 
       <br><br>Nach einem aktiven Tag in der Natur sorgt die hauseigene Sauna für dein 
       privates Wellness-Erlebnis. Alternativ lässt sich der Tag auch wunderbar auf der
       schönen Terrasse inmitten der Ruhe der Natur ausklingen.
@@ -169,7 +169,7 @@
     <p>Interesse geweckt? Melde dich gerne bei uns.</p>
     <div class="kontakt-buttons">
       <a href="mailto:felix.loth@outlook.com" class="btn">E-Mail schreiben</a>
-      <a href="https://schwedenhaus-marianne.com/ferienhaeuser.php?sprache=de" class="btn btn-buchen" target="_blank" rel="noopener">Jetzt buchen</a>
+      <a href="https://schwedenhaus-marianne.com/ferienhaeuser.php?sprache=de" class="btn btn-buchen" id="buchenBtn" target="_blank" rel="noopener">Jetzt buchen</a>
     </div>
   </section>
 
@@ -178,6 +178,23 @@
 <footer>
   <p>&copy; 2026 Ferienhaus Schweden</p>
 </footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Schließen">&times;</button>
+  <img src="" alt="">
+</div>
+
+<div class="modal-overlay" id="buchenModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Schließen">&times;</button>
+    <p>Wir verlinken hier auf die <b>offizielle Buchungsseite</b>.<br> 
+      Diese Seite wurde nicht von uns erstellt. Daher sind wir <b>nicht</b>
+    für die Art und Weise der Darstellung <b>verantwortlich</b>.</p>
+    <div class="modal-buttons">
+      <button class="btn btn-buchen" id="modalWeiter">Weiter</button>
+    </div>
+  </div>
+</div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="js/gallery-data.js"></script>
