@@ -56,6 +56,91 @@ function passeKartenausschnittAn() {
 passeKartenausschnittAn();
 window.addEventListener('load', passeKartenausschnittAn);
 
+// Wetter-Widget (Open-Meteo, kein API-Key nötig)
+const wetterCodes = {
+  0: ['☀️', 'Klarer Himmel'],
+  1: ['🌤️', 'Überwiegend klar'],
+  2: ['⛅', 'Teilweise bewölkt'],
+  3: ['☁️', 'Bewölkt'],
+  45: ['🌫️', 'Nebel'],
+  48: ['🌫️', 'Nebel mit Reifbildung'],
+  51: ['🌦️', 'Leichter Nieselregen'],
+  53: ['🌦️', 'Nieselregen'],
+  55: ['🌧️', 'Starker Nieselregen'],
+  56: ['🌧️', 'Gefrierender Nieselregen'],
+  57: ['🌧️', 'Starker gefrierender Nieselregen'],
+  61: ['🌦️', 'Leichter Regen'],
+  63: ['🌧️', 'Regen'],
+  65: ['🌧️', 'Starker Regen'],
+  66: ['🌧️', 'Gefrierender Regen'],
+  67: ['🌧️', 'Starker gefrierender Regen'],
+  71: ['🌨️', 'Leichter Schneefall'],
+  73: ['🌨️', 'Schneefall'],
+  75: ['❄️', 'Starker Schneefall'],
+  77: ['❄️', 'Schneekörner'],
+  80: ['🌦️', 'Leichte Regenschauer'],
+  81: ['🌧️', 'Regenschauer'],
+  82: ['🌧️', 'Starke Regenschauer'],
+  85: ['🌨️', 'Leichte Schneeschauer'],
+  86: ['❄️', 'Starke Schneeschauer'],
+  95: ['⛈️', 'Gewitter'],
+  96: ['⛈️', 'Gewitter mit Hagel'],
+  99: ['⛈️', 'Starkes Gewitter mit Hagel']
+};
+
+function wetterInfo(code) {
+  return wetterCodes[code] || ['🌡️', 'Unbekannt'];
+}
+
+const wetterWochentage = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+
+async function ladeWetter() {
+  const wetterContent = document.getElementById('wetterContent');
+  if (!wetterContent) return;
+
+  const [lat, lon] = hausKoordinaten;
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+    `&current_weather=true&daily=weather_code,temperature_2m_max,temperature_2m_min` +
+    `&timezone=auto&forecast_days=6`;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Wetterdaten nicht verfügbar');
+    const data = await response.json();
+
+    const [aktuellIcon, aktuellText] = wetterInfo(data.current_weather.weathercode);
+
+    const tageHtml = data.daily.time.map((datum, i) => {
+      const [icon] = wetterInfo(data.daily.weather_code[i]);
+      const wochentag = wetterWochentage[new Date(datum).getDay()];
+      const max = Math.round(data.daily.temperature_2m_max[i]);
+      const min = Math.round(data.daily.temperature_2m_min[i]);
+      return `
+        <div class="wetter-day">
+          <div class="wetter-day-name">${i === 0 ? 'Heute' : wochentag}</div>
+          <span class="wetter-icon">${icon}</span>
+          <div class="wetter-temps">
+            <span class="wetter-max">${max}°</span> <span class="wetter-min">${min}°</span>
+          </div>
+        </div>`;
+    }).join('');
+
+    wetterContent.innerHTML = `
+      <div class="wetter-current">
+        <span class="wetter-icon">${aktuellIcon}</span>
+        <div>
+          <div class="wetter-current-temp">${Math.round(data.current_weather.temperature)}°C</div>
+          <div class="wetter-current-desc">${aktuellText}</div>
+        </div>
+      </div>
+      <div class="wetter-forecast">${tageHtml}</div>`;
+  } catch (error) {
+    wetterContent.innerHTML = '<p class="wetter-status">Wetterdaten konnten nicht geladen werden.</p>';
+  }
+}
+
+ladeWetter();
+
 // Slideshows für die Foto-Kategorien
 function buildSlideshow(container, captions) {
   const category = galleryData[container.dataset.category];
