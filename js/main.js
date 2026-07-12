@@ -221,16 +221,34 @@ function buildSlideshow(container, captions) {
 
 document.querySelectorAll('.slideshow').forEach(el => buildSlideshow(el, captionsData));
 
-// Lightbox: Foto in Originalformat groß anzeigen
+// Lightbox: Foto in Originalformat groß anzeigen, mit Navigation zum
+// nächsten/vorherigen Foto der gleichen Kategorie und Bildunterschrift
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
+const lightboxCaption = document.getElementById('lightboxCaption');
 const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrevBtn = document.getElementById('lightboxPrev');
+const lightboxNextBtn = document.getElementById('lightboxNext');
 
-document.querySelectorAll('.slide img').forEach(img => {
-  img.addEventListener('click', () => {
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt;
-    lightbox.classList.add('open');
+let lightboxImages = [];
+let lightboxIndex = 0;
+
+function showLightboxImage(index) {
+  lightboxIndex = (index + lightboxImages.length) % lightboxImages.length;
+  const img = lightboxImages[lightboxIndex];
+  lightboxImg.src = img.getAttribute('src');
+  lightboxImg.alt = img.alt;
+  lightboxCaption.textContent = captionsData[img.getAttribute('src')] || '';
+}
+
+document.querySelectorAll('.slideshow').forEach(container => {
+  const imgs = [...container.querySelectorAll('.slide img')];
+  imgs.forEach((img, i) => {
+    img.addEventListener('click', () => {
+      lightboxImages = imgs;
+      showLightboxImage(i);
+      lightbox.classList.add('open');
+    });
   });
 });
 
@@ -239,12 +257,32 @@ function closeLightbox() {
   lightboxImg.src = '';
 }
 
+function lightboxNext() { showLightboxImage(lightboxIndex + 1); }
+function lightboxPrev() { showLightboxImage(lightboxIndex - 1); }
+
 lightboxClose.addEventListener('click', closeLightbox);
+lightboxNextBtn.addEventListener('click', lightboxNext);
+lightboxPrevBtn.addEventListener('click', lightboxPrev);
 lightbox.addEventListener('click', e => {
   if (e.target === lightbox) closeLightbox();
 });
 document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
   if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') lightboxNext();
+  if (e.key === 'ArrowLeft') lightboxPrev();
+});
+
+// Wischen auf Touch-Geräten
+let lightboxTouchStartX = 0;
+lightbox.addEventListener('touchstart', e => {
+  lightboxTouchStartX = e.touches[0].clientX;
+});
+lightbox.addEventListener('touchend', e => {
+  const delta = e.changedTouches[0].clientX - lightboxTouchStartX;
+  if (Math.abs(delta) > 40) {
+    delta > 0 ? lightboxPrev() : lightboxNext();
+  }
 });
 
 // Hinweisfenster beim Klick auf "Jetzt buchen"
